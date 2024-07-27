@@ -49,8 +49,9 @@ function CreateEmployee() {
     validateOnMount: false,
 
     validateOnChange: true,
-    onSubmit: (values) => {
-      dispatch(employeeDataSliceAction.createEmployeeCard(values))
+    onSubmit: (values,helpers) => {
+      dispatch(employeeDataSliceAction.createEmployeeCard(values)),
+      helpers.resetForm()
     },
   });
 
@@ -101,7 +102,7 @@ function CreateEmployee() {
 
         />
       </StyledInputsContainer>
-      <Button name="Create" type="submit" disabled={formik.isSubmitting} />
+      <Button name="Create" type="submit" />
     </StyledFormContainer>
   );
 }

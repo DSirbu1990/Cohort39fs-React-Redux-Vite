@@ -13,40 +13,32 @@ import { v4 } from "uuid";
 
 function Employees() {
   const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
-//   const employeeCards = employee.map((employeeObj: Employee) => {
-//     return <Employees_Card employee={employeeObj} key={v4()} />;
-//   });
 
-//   return (
-//     <EmployeesWrapper>{employee.length > 0 && employeeCards}</EmployeesWrapper>
-//   );
-// } 
-
-const employeesCards:any = dataFromCreateEmployee.map ((employeeObj: EmployeeData) =>{
-  return  
-  (<EmployeeCard  key= {v4()} >
+const employeesCards:ReactNode = dataFromCreateEmployee.map ((employeeObj: EmployeeData) =>{
+  return  (
+  <EmployeeCard  key= {v4()} >
   <DataContainer>
     <Title>Name</Title>
     <Field>
-      {employeeObj.name}
+      {employeeObj?.[EMPLOYEE_FORM_NAMES.NAME]}
     </Field>
   </DataContainer>
   <DataContainer>
     <Title>Surname</Title>
     <Field>
-      {employeeObj.surname}
+      {employeeObj?.[EMPLOYEE_FORM_NAMES.SURNAME]}
     </Field>
   </DataContainer>
   <DataContainer>
     <Title>Age</Title>
     <Field>
-      {employeeObj.age}
+      {employeeObj?.[EMPLOYEE_FORM_NAMES.AGE]}
     </Field>
   </DataContainer>
   <DataContainer>
     <Title>Job Position</Title>
     <Field>
-      { employeeObj.job_position}
+      { employeeObj?.[EMPLOYEE_FORM_NAMES.JOB_POSITION]}
     </Field>
   </DataContainer>
   <Button name = "Delete" type = "button" onClick={()=>{}} isRed = {true}/>
@@ -56,7 +48,7 @@ console.log(employeesCards)
 
   return (
     <PageWrapperEmployee>
-      {employeesCards}
+      {dataFromCreateEmployee.length>0 && <>{employeesCards}</>}
   
     <ButtonControl><Button name = "Remove All Employee" type = "button" onClick={()=>{}} isRed = {true} /></ButtonControl>
     </PageWrapperEmployee>

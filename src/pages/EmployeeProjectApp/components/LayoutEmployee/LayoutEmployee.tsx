@@ -15,15 +15,9 @@ import { LayoutProps, EmployeeData, LayoutEmployeeContextData } from "./types";
 
 import logo_viper from "assets/images/logo_viper_black.png";
 
-export const InfoAboutEmployee = createContext<LayoutEmployeeContextData>({
-  employeeData: undefined,
-  setEmployeeData: () => {},
-});
+
 
 function LayoutEmployee({ children }: LayoutProps) {
-  const [employeeData, setEmployeeData] = useState<EmployeeData | undefined>(
-    undefined
-  );
 
   const navigate = useNavigate();
 
@@ -33,12 +27,6 @@ function LayoutEmployee({ children }: LayoutProps) {
 
 
   return (
-    <InfoAboutEmployee.Provider
-      value={{
-        employeeData: employeeData,
-        setEmployeeData: setEmployeeData,
-      }}
-    >
       <LayoutWrapper>
         <Header>
           <Logo onClick={goHomePage}>
@@ -67,7 +55,7 @@ function LayoutEmployee({ children }: LayoutProps) {
         </Header>
         <Main>{children}</Main>
       </LayoutWrapper>
-    </InfoAboutEmployee.Provider>
+   
   );
 }
 
