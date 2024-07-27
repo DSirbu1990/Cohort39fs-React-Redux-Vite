@@ -23,5 +23,14 @@ export const employeeDataSlice = createAppSlice ({
             
         }),
 
-    })
+    }),
+    selectors: {
+        employees: (state: EmployeeSliceIntialState) => {
+            return state.employees
+        }
+    }
 })
+
+export const employeeDataSliceAction = employeeDataSlice.actions
+
+export const employeeDataSliceSelectors = employeeDataSlice.selectors

@@ -10,9 +10,13 @@ import LayoutEmployee, {
 
 import { EMPLOYEE_FORM_NAMES } from "./types";
 import { StyledFormContainer, StyledInputsContainer } from "./styles";
+import {EmployeeData} from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
+
+import { useAppDispatch, useAppSelector } from "store/hooks"
+import {employeeDataSliceAction, employeeDataSliceSelectors} from "store/redux/employeeData/employeeDataSlice"
 
 function CreateEmployee() {
-  const layoutEmployeeData = useContext(InfoAboutEmployee);
+  
 
   const validationSchema = Yup.object().shape({
     [EMPLOYEE_FORM_NAMES.NAME]: Yup.string()
@@ -31,7 +35,8 @@ function CreateEmployee() {
       "Job Position field must contain maximum 30 characters"
     ),
   });
-
+  const employee = useAppSelector(employeeDataSliceSelectors.employees)
+  const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
       [EMPLOYEE_FORM_NAMES.NAME]: "",
@@ -45,11 +50,11 @@ function CreateEmployee() {
 
     validateOnChange: true,
     onSubmit: (values) => {
-      layoutEmployeeData.setEmployeeData(values);
+      dispatch(employeeDataSliceAction.createEmployeeCard(values))
     },
   });
 
-  console.log(layoutEmployeeData);
+  console.log(employee);
 
   return (
     <StyledFormContainer onSubmit={formik.handleSubmit}>
