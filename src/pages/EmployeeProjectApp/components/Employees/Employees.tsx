@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "store/hooks"
 
 
-import { InfoAboutEmployee } from "pages/EmployeeProjectApp/components/LayoutEmployee/LayoutEmployee";
 import { EmployeeData, LayoutEmployeeContextData } from "pages/EmployeeProjectApp/components/LayoutEmployee/types";
 import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types";
 
@@ -12,7 +11,13 @@ import { ReactNode } from "react";
 import { v4 } from "uuid";
 
 function Employees() {
-  const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
+const dispatch = useAppDispatch()
+
+const onResetEmployee = () => {
+  dispatch(employeeDataSliceAction.removeAllEmployees())
+}
+
+const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
 
 const employeesCards:ReactNode = dataFromCreateEmployee.map ((employeeObj: EmployeeData) =>{
   return  (
@@ -50,7 +55,7 @@ console.log(employeesCards)
     <PageWrapperEmployee>
       {dataFromCreateEmployee.length>0 && <>{employeesCards}</>}
   
-    <ButtonControl><Button name = "Remove All Employee" type = "button" onClick={()=>{}} isRed = {true} /></ButtonControl>
+    <ButtonControl><Button name = "Remove All Employee" type = "button" onClick={onResetEmployee} isRed = {true} /></ButtonControl>
     </PageWrapperEmployee>
   );
 }
