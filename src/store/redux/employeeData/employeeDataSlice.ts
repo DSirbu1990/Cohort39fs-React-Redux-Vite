@@ -10,7 +10,6 @@ const employeeInitialState: EmployeeSliceIntialState = {
 }
 
 
-
 export const employeeDataSlice = createAppSlice ({
 
     name: "EMPLOYEE",

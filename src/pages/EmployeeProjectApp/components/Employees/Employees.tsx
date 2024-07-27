@@ -4,13 +4,15 @@ import { InfoAboutEmployee } from "pages/EmployeeProjectApp/components/LayoutEmp
 import { LayoutEmployeeContextData } from "pages/EmployeeProjectApp/components/LayoutEmployee/types";
 import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types";
 
-import { EmployeeCard, DataContainer, Title, Field } from "./styles";
+import { PageWrapperEmployee, EmployeeCard, DataContainer, Title, Field, ButtonControl} from "./styles";
+import Button from "components/Button/Button";
 
 function Employees() {
   const dataFromCreateEmployee =
     useContext<LayoutEmployeeContextData>(InfoAboutEmployee);
 
   return (
+    <PageWrapperEmployee>
     <EmployeeCard>
       <DataContainer>
         <Title>Name</Title>
@@ -40,7 +42,10 @@ function Employees() {
           }
         </Field>
       </DataContainer>
+      <Button name = "Delete" type = "button" onClick={()=>{}} isRed = {true}/>
     </EmployeeCard>
+    <ButtonControl><Button name = "Remove All Employee" type = "button" onClick={()=>{}} isRed = {true} /></ButtonControl>
+    </PageWrapperEmployee>
   );
 }
 
