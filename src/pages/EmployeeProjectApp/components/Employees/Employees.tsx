@@ -46,7 +46,6 @@ function Employees() {
             <Field>{employeeObj?.[EMPLOYEE_FORM_NAMES.JOB_POSITION]}</Field>
           </DataContainer>
           <Button
-            id={employeeObj?.[EMPLOYEE_FORM_NAMES.ID]}
             name="Delete"
             type="button"
             onClick={(event: React.MouseEvent) => {
@@ -69,7 +68,6 @@ function Employees() {
 
       <ButtonControl>
         <Button
-          id="2"
           name="Remove All Employee"
           type="button"
           onClick={() => {}}

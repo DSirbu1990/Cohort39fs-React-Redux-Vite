@@ -104,7 +104,7 @@ function CreateEmployee() {
           error={formik.errors[EMPLOYEE_FORM_NAMES.JOB_POSITION]}
         />
       </StyledInputsContainer>
-      <Button id="1" name="Create" type="submit" />
+      <Button name="Create" type="submit" />
     </StyledFormContainer>
   )
 }
