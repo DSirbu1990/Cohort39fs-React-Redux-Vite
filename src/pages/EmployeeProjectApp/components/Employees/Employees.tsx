@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "store/hooks"
 import { EmployeeData } from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
 import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types"
 
+
 import {
   PageWrapperEmployee,
   EmployeeCard,
@@ -24,6 +25,12 @@ function Employees() {
   const dataFromCreateEmployee = useAppSelector(
     employeeDataSliceSelectors.employees,
   )
+  const onResetEmployee = () => {
+  dispatch(employeeDataSliceAction.removeAllEmployees())
+  }
+  
+  const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
+
 
   const employeesCards: ReactNode = dataFromCreateEmployee.map(
     (employeeObj: EmployeeData) => {
@@ -64,16 +71,10 @@ function Employees() {
 
   return (
     <PageWrapperEmployee>
-      {dataFromCreateEmployee.length > 0 && <>{employeesCards}</>}
 
-      <ButtonControl>
-        <Button
-          name="Remove All Employee"
-          type="button"
-          onClick={() => {}}
-          isRed={true}
-        />
-      </ButtonControl>
+      {dataFromCreateEmployee.length>0 && <>{employeesCards}</>}
+  
+    <ButtonControl><Button name = "Remove All Employee" type = "button" onClick={onResetEmployee} isRed = {true} /></ButtonControl>
     </PageWrapperEmployee>
   )
 }

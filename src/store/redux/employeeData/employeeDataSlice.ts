@@ -29,6 +29,7 @@ export const employeeDataSlice = createAppSlice({
         )
       },
     ),
+    removeAllEmployees: create.reducer (()=> employeeInitialState)
   }),
   selectors: {
     employees: (state: EmployeeSliceIntialState) => {
