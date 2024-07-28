@@ -1,19 +1,20 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
-import {EMPLOYEE_FORM_NAMES} from "pages/EmployeeProjectApp/components/CreateEmployee/types"
+import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types"
 
 export interface LayoutProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export interface EmployeeData {
-  [EMPLOYEE_FORM_NAMES.NAME]: string,
-  [EMPLOYEE_FORM_NAMES.SURNAME]: string,
-  [EMPLOYEE_FORM_NAMES.AGE]: string,
+  [EMPLOYEE_FORM_NAMES.ID]: string
+  [EMPLOYEE_FORM_NAMES.NAME]: string
+  [EMPLOYEE_FORM_NAMES.SURNAME]: string
+  [EMPLOYEE_FORM_NAMES.AGE]: string
   [EMPLOYEE_FORM_NAMES.JOB_POSITION]: string
 }
 
 export interface LayoutEmployeeContextData {
-  employeeData: undefined | EmployeeData,
-  setEmployeeData: any,
+  employeeData: undefined | EmployeeData
+  setEmployeeData: any
 }

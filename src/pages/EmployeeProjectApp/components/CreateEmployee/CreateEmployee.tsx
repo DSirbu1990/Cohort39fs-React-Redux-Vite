@@ -1,23 +1,20 @@
-import { useContext } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { useFormik } from "formik"
+import * as Yup from "yup"
 
-import Button from "components/Button/Button";
-import Input from "components/Input/Input";
-import LayoutEmployee, {
-  InfoAboutEmployee,
-} from "pages/EmployeeProjectApp/components/LayoutEmployee/LayoutEmployee";
+import Button from "components/Button/Button"
+import Input from "components/Input/Input"
 
-import { EMPLOYEE_FORM_NAMES } from "./types";
-import { StyledFormContainer, StyledInputsContainer } from "./styles";
-import {EmployeeData} from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
+import { EMPLOYEE_FORM_NAMES } from "./types"
+import { StyledFormContainer, StyledInputsContainer } from "./styles"
 
 import { useAppDispatch, useAppSelector } from "store/hooks"
-import {employeeDataSliceAction, employeeDataSliceSelectors} from "store/redux/employeeData/employeeDataSlice"
+import {
+  employeeDataSliceAction,
+  employeeDataSliceSelectors,
+} from "store/redux/employeeData/employeeDataSlice"
+import { v4 } from "uuid"
 
 function CreateEmployee() {
-  
-
   const validationSchema = Yup.object().shape({
     [EMPLOYEE_FORM_NAMES.NAME]: Yup.string()
       .required("This field is required")
@@ -32,13 +29,14 @@ function CreateEmployee() {
       .max(3, "Age field must contain maximum 3 characters"),
     [EMPLOYEE_FORM_NAMES.JOB_POSITION]: Yup.string().max(
       30,
-      "Job Position field must contain maximum 30 characters"
+      "Job Position field must contain maximum 30 characters",
     ),
-  });
+  })
   const employee = useAppSelector(employeeDataSliceSelectors.employees)
   const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
+      [EMPLOYEE_FORM_NAMES.ID]: "",
       [EMPLOYEE_FORM_NAMES.NAME]: "",
       [EMPLOYEE_FORM_NAMES.SURNAME]: "",
       [EMPLOYEE_FORM_NAMES.AGE]: "",
@@ -49,13 +47,18 @@ function CreateEmployee() {
     validateOnMount: false,
 
     validateOnChange: true,
-    onSubmit: (values,helpers) => {
-      dispatch(employeeDataSliceAction.createEmployeeCard(values)),
-      helpers.resetForm()
+    onSubmit: (values, helpers) => {
+      dispatch(
+        employeeDataSliceAction.createEmployeeCard({
+          ...values,
+          [EMPLOYEE_FORM_NAMES.ID]: v4(),
+        }),
+      ),
+        helpers.resetForm()
     },
-  });
+  })
 
-  console.log(employee);
+  console.log(employee)
 
   return (
     <StyledFormContainer onSubmit={formik.handleSubmit}>
@@ -99,12 +102,11 @@ function CreateEmployee() {
           value={formik.values[EMPLOYEE_FORM_NAMES.JOB_POSITION]}
           onChange={formik.handleChange}
           error={formik.errors[EMPLOYEE_FORM_NAMES.JOB_POSITION]}
-
         />
       </StyledInputsContainer>
       <Button name="Create" type="submit" />
     </StyledFormContainer>
-  );
+  )
 }
 
-export default CreateEmployee;
+export default CreateEmployee

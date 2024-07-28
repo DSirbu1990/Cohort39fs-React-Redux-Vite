@@ -1,4 +1,5 @@
 export enum EMPLOYEE_FORM_NAMES {
+    ID = "id",
     NAME = "name",
     SURNAME = "surname",
     AGE = "age",
