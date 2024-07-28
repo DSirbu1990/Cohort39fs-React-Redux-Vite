@@ -1,9 +1,7 @@
 import { useAppDispatch, useAppSelector } from "store/hooks"
 
-import {
-  EmployeeData,
-  LayoutEmployeeContextData,
-} from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
+
+import { EmployeeData } from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
 import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types"
 
 import {
@@ -26,13 +24,14 @@ import { v4 } from "uuid"
 function Employees() {
   const dispatch = useAppDispatch()
 
-  const onResetEmployee = () => {
-    dispatch(employeeDataSliceAction.removeAllEmployees())
-  }
-
   const dataFromCreateEmployee = useAppSelector(
     employeeDataSliceSelectors.employees,
   )
+  const onResetEmployee = () => {
+  dispatch(employeeDataSliceAction.removeAllEmployees())
+  }
+  
+  const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
 
   const employeesCards: ReactNode = dataFromCreateEmployee.map(
     (employeeObj: EmployeeData) => {
@@ -54,17 +53,29 @@ function Employees() {
             <Title>Job Position</Title>
             <Field>{employeeObj?.[EMPLOYEE_FORM_NAMES.JOB_POSITION]}</Field>
           </DataContainer>
-          <Button name="Delete" type="button" onClick={() => {}} isRed={true} />
+
+          <Button
+            name="Delete"
+            type="button"
+            onClick={(event: React.MouseEvent) => {
+              dispatch(
+                employeeDataSliceAction.deleteEmployeeCard(
+                  employeeObj?.[EMPLOYEE_FORM_NAMES.ID],
+                ),
+              )
+            }}
+            isRed={true}
+          />
         </EmployeeCard>
       )
     },
   )
+
   console.log(employeesCards)
 
   return (
     <PageWrapperEmployee>
       <CardsContainer>
-        {" "}
         {dataFromCreateEmployee.length > 0 && <>{employeesCards}</>}
       </CardsContainer>
 
@@ -78,6 +89,9 @@ function Employees() {
           />
         )}
       </ButtonControl>
+
+
+  
     </PageWrapperEmployee>
   )
 }
