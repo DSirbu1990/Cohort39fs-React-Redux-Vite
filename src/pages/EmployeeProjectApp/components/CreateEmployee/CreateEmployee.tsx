@@ -4,9 +4,6 @@ import * as Yup from "yup";
 
 import Button from "components/Button/Button";
 import Input from "components/Input/Input";
-import LayoutEmployee, {
-  InfoAboutEmployee,
-} from "pages/EmployeeProjectApp/components/LayoutEmployee/LayoutEmployee";
 
 import { EMPLOYEE_FORM_NAMES } from "./types";
 import { StyledFormContainer, StyledInputsContainer } from "./styles";

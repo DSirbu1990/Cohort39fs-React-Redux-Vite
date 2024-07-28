@@ -22,7 +22,7 @@ export const employeeDataSlice = createAppSlice ({
            state.employees = [...state.employees, action.payload]
             
         }),
-        
+        removeAllEmployees: create.reducer (()=> employeeInitialState)
 
     }),
     selectors: {
