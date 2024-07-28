@@ -1,8 +1,8 @@
 import { useAppDispatch, useAppSelector } from "store/hooks"
 
+
 import { EmployeeData } from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
 import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types"
-
 
 import {
   PageWrapperEmployee,
@@ -11,6 +11,7 @@ import {
   Title,
   Field,
   ButtonControl,
+  CardsContainer,
 } from "./styles"
 import Button from "components/Button/Button"
 import {
@@ -22,6 +23,7 @@ import { v4 } from "uuid"
 
 function Employees() {
   const dispatch = useAppDispatch()
+
   const dataFromCreateEmployee = useAppSelector(
     employeeDataSliceSelectors.employees,
   )
@@ -30,7 +32,6 @@ function Employees() {
   }
   
   const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
-
 
   const employeesCards: ReactNode = dataFromCreateEmployee.map(
     (employeeObj: EmployeeData) => {
@@ -52,6 +53,7 @@ function Employees() {
             <Title>Job Position</Title>
             <Field>{employeeObj?.[EMPLOYEE_FORM_NAMES.JOB_POSITION]}</Field>
           </DataContainer>
+
           <Button
             name="Delete"
             type="button"
@@ -69,12 +71,27 @@ function Employees() {
     },
   )
 
+  console.log(employeesCards)
+
   return (
     <PageWrapperEmployee>
+      <CardsContainer>
+        {dataFromCreateEmployee.length > 0 && <>{employeesCards}</>}
+      </CardsContainer>
 
-      {dataFromCreateEmployee.length>0 && <>{employeesCards}</>}
+      <ButtonControl>
+        {dataFromCreateEmployee.length > 0 && (
+          <Button
+            name="Remove All Employee"
+            type="button"
+            onClick={onResetEmployee}
+            isRed={true}
+          />
+        )}
+      </ButtonControl>
+
+
   
-    <ButtonControl><Button name = "Remove All Employee" type = "button" onClick={onResetEmployee} isRed = {true} /></ButtonControl>
     </PageWrapperEmployee>
   )
 }

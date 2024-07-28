@@ -1,8 +1,10 @@
 import { useFormik } from "formik"
 import * as Yup from "yup"
 
-import Button from "components/Button/Button"
-import Input from "components/Input/Input"
+
+import Button from "components/Button/Button";
+import Input from "components/Input/Input";
+
 
 import { EMPLOYEE_FORM_NAMES } from "./types"
 import { StyledFormContainer, StyledInputsContainer } from "./styles"
@@ -109,4 +111,5 @@ function CreateEmployee() {
   )
 }
 
-export default CreateEmployee
+
+export default CreateEmployee;

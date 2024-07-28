@@ -8,6 +8,7 @@ const employeeInitialState: EmployeeSliceIntialState = {
   employees: [],
 }
 
+
 export const employeeDataSlice = createAppSlice({
   name: "EMPLOYEE",
 

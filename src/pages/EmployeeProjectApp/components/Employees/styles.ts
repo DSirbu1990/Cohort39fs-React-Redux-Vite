@@ -9,6 +9,14 @@ export const PageWrapperEmployee = styled.div`
   gap: 50px;
 `
 
+ export const CardsContainer = styled.div`
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+ gap:50px;
+ ` 
+
 export const EmployeeCard = styled.div`
   display: flex;
   justify-content: center;

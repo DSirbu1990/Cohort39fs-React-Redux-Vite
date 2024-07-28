@@ -53,4 +53,5 @@ function LayoutEmployee({ children }: LayoutProps) {
   )
 }
 
-export default LayoutEmployee
+export default LayoutEmployee;
+
