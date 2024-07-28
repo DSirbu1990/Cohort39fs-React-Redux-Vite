@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "store/hooks"
 
 import { EmployeeData } from "pages/EmployeeProjectApp/components/LayoutEmployee/types"
 import { EMPLOYEE_FORM_NAMES } from "pages/EmployeeProjectApp/components/CreateEmployee/types"
-
 import {
   PageWrapperEmployee,
   EmployeeCard,
@@ -31,10 +30,16 @@ function Employees() {
   dispatch(employeeDataSliceAction.removeAllEmployees())
   }
   
-  const dataFromCreateEmployee = useAppSelector(employeeDataSliceSelectors.employees)
-
   const employeesCards: ReactNode = dataFromCreateEmployee.map(
     (employeeObj: EmployeeData) => {
+      const onDeletCard = () => {
+        dispatch(
+          employeeDataSliceAction.deleteEmployeeCard(
+            employeeObj?.[EMPLOYEE_FORM_NAMES.ID],
+          ),
+        )
+      }
+
       return (
         <EmployeeCard key={v4()}>
           <DataContainer>
@@ -57,13 +62,7 @@ function Employees() {
           <Button
             name="Delete"
             type="button"
-            onClick={(event: React.MouseEvent) => {
-              dispatch(
-                employeeDataSliceAction.deleteEmployeeCard(
-                  employeeObj?.[EMPLOYEE_FORM_NAMES.ID],
-                ),
-              )
-            }}
+            onClick={onDeletCard}
             isRed={true}
           />
         </EmployeeCard>

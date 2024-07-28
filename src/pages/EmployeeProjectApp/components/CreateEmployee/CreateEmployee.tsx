@@ -60,8 +60,6 @@ function CreateEmployee() {
     },
   })
 
-  console.log(employee)
-
   return (
     <StyledFormContainer onSubmit={formik.handleSubmit}>
       <StyledInputsContainer>
@@ -100,7 +98,7 @@ function CreateEmployee() {
           name={EMPLOYEE_FORM_NAMES.JOB_POSITION}
           type="text"
           placeholder="QA"
-          label="Job Position*"
+          label="Job Position"
           value={formik.values[EMPLOYEE_FORM_NAMES.JOB_POSITION]}
           onChange={formik.handleChange}
           error={formik.errors[EMPLOYEE_FORM_NAMES.JOB_POSITION]}
