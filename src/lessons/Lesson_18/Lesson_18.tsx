@@ -55,7 +55,7 @@ function Lesson_18() {
   }, [error])
 
   return (
-    <PageWrapper>
+      <PageWrapper>
       <CatFactCard>
         <CatFactsContainer>
           {catFacts.length > 0 && catFactsParagraphs}
