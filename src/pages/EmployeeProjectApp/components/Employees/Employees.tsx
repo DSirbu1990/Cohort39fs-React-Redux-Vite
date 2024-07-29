@@ -63,14 +63,12 @@ function Employees() {
             name="Delete"
             type="button"
             onClick={onDeletCard}
-            isRed={true}
+            isRed
           />
         </EmployeeCard>
       )
     },
   )
-
-  console.log(employeesCards)
 
   return (
     <PageWrapperEmployee>

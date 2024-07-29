@@ -38,7 +38,6 @@ function CreateEmployee() {
   const dispatch = useAppDispatch()
   const formik = useFormik({
     initialValues: {
-      [EMPLOYEE_FORM_NAMES.ID]: "",
       [EMPLOYEE_FORM_NAMES.NAME]: "",
       [EMPLOYEE_FORM_NAMES.SURNAME]: "",
       [EMPLOYEE_FORM_NAMES.AGE]: "",
