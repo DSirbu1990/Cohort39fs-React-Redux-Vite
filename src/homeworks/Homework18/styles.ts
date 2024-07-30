@@ -36,6 +36,7 @@ export const RandomJokeContainer = styled.div`
 export const RandomJokeText = styled.p`
   font-size: 24px;
   font-weight: bold;
+  width: 100%;
 `
 export const PunchlineText = styled.p`
   font-size: 15px;

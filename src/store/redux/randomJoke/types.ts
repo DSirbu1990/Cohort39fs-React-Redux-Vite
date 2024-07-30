@@ -7,4 +7,5 @@ export interface RandomJoke {
 export interface RandomJokeSliceState{
     randomJoks: RandomJoke[]
     error: string | undefined
+    isFetching: boolean
 }

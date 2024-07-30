@@ -24,7 +24,7 @@ function Homework18() {
   const dispatch = useAppDispatch()
   const randomJoks = useAppSelector(randomJokeSelectors.randomJoks)
   const error = useAppSelector(randomJokeSelectors.error)
-
+  const isFetching = useAppSelector(randomJokeSelectors.isFetching)
   const getRandomJoke = () => {
     dispatch(randomJokeActions.getRandomJoke("Some data"))
   }
@@ -67,14 +67,18 @@ function Homework18() {
               name="Delete All Jokes"
               type="button"
               onClick={onDeletAllJoks}
-              isRed={true}
+              isRed
             />
           )}
         </ButtonControl>
         <RandomJokeContainer>
           {randomJoks.length > 0 && randomJokeParagraphs}
         </RandomJokeContainer>
-        <Button name="Get Random Joke" onClick={getRandomJoke} />
+        <Button
+          disabled={isFetching}
+          name="Get Random Joke"
+          onClick={getRandomJoke}
+        />
       </RandomJokeCard>
     </PageWrapper>
   )

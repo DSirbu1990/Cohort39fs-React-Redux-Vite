@@ -4,12 +4,11 @@ import { createAppSlice } from "store/createAppSlice"
 import { PayloadAction } from "@reduxjs/toolkit"
 
 import { RandomJokeSliceState, RandomJoke } from "./types"
-import { error } from "console"
-import { CatFactSliceState } from "../catFact/types"
 
 const randomJokeInitialState: RandomJokeSliceState = {
   randomJoks: [],
   error: undefined,
+  isFetching: false,
 }
 
 export const randomJokeSlice = createAppSlice({
@@ -26,14 +25,21 @@ export const randomJokeSlice = createAppSlice({
       {
         pending: (state: RandomJokeSliceState) => {
           state.error = undefined
+          state.isFetching = true
         },
-        fulfilled: (state: RandomJokeSliceState, action) => {
+          fulfilled: (state: RandomJokeSliceState, action) => {
+            state.isFetching = false
           state.randomJoks = [
             ...state.randomJoks,
-            { joke: action.payload.data.setup,  punchline: action.payload.data.punchline, id: v4() },
+            {
+              joke: action.payload.data.setup,
+              punchline: action.payload.data.punchline,
+              id: v4(),
+            },
           ]
         },
-        rejected: (state: RandomJokeSliceState, action) => {
+          rejected: (state: RandomJokeSliceState, action) => {
+            state.isFetching = false
           state.error = action.error.message
         },
       },
@@ -44,13 +50,14 @@ export const randomJokeSlice = createAppSlice({
           return randomJoke.id !== action.payload
         })
       },
-      ),
-    deleteAllJoks: create.reducer (()=> randomJokeInitialState)
+    ),
+    deleteAllJoks: create.reducer(() => randomJokeInitialState),
   }),
 
   selectors: {
     randomJoks: (state: RandomJokeSliceState) => state.randomJoks,
-    error: (state: RandomJokeSliceState) => state.error,
+      error: (state: RandomJokeSliceState) => state.error,
+    isFetching: (state: RandomJokeSliceState) => state.isFetching
   },
 })
 
